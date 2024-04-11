@@ -41,11 +41,16 @@
     document.getElementById('yes-count').textContent = 'YESの数: ' + value;
   });
 
+ // リセットボタンのイベントリスナー
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    set(dbRef, 0); /
+
 </script>
 
 <h2>Yes/No アプリ</h2>
 <button id="yes-btn">YES</button>
 <div id="yes-count">YESの数: 0</div>
-
+<button id="reset-btn">リセット</button>
+    
 </body>
 </html>
