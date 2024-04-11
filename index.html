@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Yes/No アプリ</title>
-    <script type="module">
+    
+<script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   // Your web app's Firebase configuration
-        // Firebaseプロジェクトの設定
-        var firebaseConfig = {
-            apiKey: "AIzaSyAjcfgd_O-pbrXUYshCvE5cFJ34Q0Fwl84",
-             authDomain: "yesno-64571.firebaseapp.com",
-             databaseURL: "https://yesno-64571-default-rtdb.firebaseio.com",
-              projectId: "yesno-64571",
-              storageBucket: "yesno-64571.appspot.com",
-              messagingSenderId: "555148637942",
-             appId: "1:555148637942:web:4b5708cba5808c16f4ded7"
-        };
-        // Firebaseを初期化
-        firebase.initializeApp(firebaseConfig);
-        // Databaseの参照を取得
-        var dbRef = firebase.database().ref('yesCount');
-    </script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAjcfgd_O-pbrXUYshCvE5cFJ34Q0Fwl84",
+    authDomain: "yesno-64571.firebaseapp.com",
+    databaseURL: "https://yesno-64571-default-rtdb.firebaseio.com",
+    projectId: "yesno-64571",
+    storageBucket: "yesno-64571.appspot.com",
+    messagingSenderId: "555148637942",
+    appId: "1:555148637942:web:4b5708cba5808c16f4ded7"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
 </head>
 <body>
     <h2>Yes/No アプリ</h2>
