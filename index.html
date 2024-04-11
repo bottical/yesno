@@ -7,8 +7,8 @@
 <body>
 <script type="module">
   // FirebaseのSDKをインポート
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-  import { getDatabase, ref, onValue, runTransaction, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
 
   // Firebaseの設定
   const firebaseConfig = {
@@ -28,28 +28,33 @@
   // 'yesCount'への参照を取得
   const dbRef = ref(db, 'yesCount');
 
-  // YESボタンのクリックイベントを設定
-  document.getElementById('yes-btn').addEventListener('click', () => {
-    runTransaction(dbRef, (currentValue) => {
-      return (currentValue || 0) + 1;
-    });
+document.getElementById('yes-btn').addEventListener('click', () => {
+  get(dbRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const newCount = (snapshot.val() || 0) + 1;
+      set(dbRef, newCount);
+    } else {
+      set(dbRef, 1); // 初めてのYESの場合
+    }
   });
+});
 
-  // Databaseの値の変更を監視
-  onValue(dbRef, (snapshot) => {
+document.getElementById('tally-btn').addEventListener('click', () => {
+  get(dbRef).then((snapshot) => {
     const value = snapshot.val() || 0;
     document.getElementById('yes-count').textContent = 'YESの数: ' + value;
   });
+});
 
- // リセットボタンのイベントリスナー
-  document.getElementById('reset-btn').addEventListener('click', () => {
-    set(dbRef, 0); 
-  });
+document.getElementById('reset-btn').addEventListener('click', () => {
+  set(dbRef, 0); // 'yesCount'の値を0に設定
+});
     
 </script>
 
 <h2>Yes/No アプリ</h2>
-<button id="yes-btn">YES</button>
+<button id="yes-btn">YES</button><button id="yes-btn">YES</button>
+<button id="tally-btn">集計</button>
 <div id="yes-count">YESの数: 0</div>
 <button id="reset-btn">リセット</button>
     
