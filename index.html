@@ -5,14 +5,12 @@
     <title>Yes/No アプリ</title>
 </head>
 <body>
-<h2>Yes/No アプリ</h2>
-<button id="yes-btn">YES</button>
-<div id="yes-count">YESの数: 0</div>
-
 <script type="module">
+  // FirebaseのSDKをインポート
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
   import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
 
+  // Firebaseの設定
   const firebaseConfig = {
     apiKey: "AIzaSyAjcfgd_O-pbrXUYshCvE5cFJ34Q0Fwl84",
     authDomain: "yesno-64571.firebaseapp.com",
@@ -23,20 +21,31 @@
     appId: "1:555148637942:web:4b5708cba5808c16f4ded7"
   };
 
+  // Firebaseアプリを初期化
   const app = initializeApp(firebaseConfig);
+  // Firebase Realtime Databaseを取得
   const db = getDatabase(app);
+  // 'yesCount'への参照を取得
   const dbRef = ref(db, 'yesCount');
 
+  // YESボタンのクリックイベントを設定
   document.getElementById('yes-btn').addEventListener('click', () => {
     runTransaction(dbRef, (currentValue) => {
       return (currentValue || 0) + 1;
     });
   });
 
+  // Databaseの値の変更を監視
   onValue(dbRef, (snapshot) => {
     const value = snapshot.val() || 0;
     document.getElementById('yes-count').textContent = 'YESの数: ' + value;
   });
+
 </script>
+
+<h2>Yes/No アプリ</h2>
+<button id="yes-btn">YES</button>
+<div id="yes-count">YESの数: 0</div>
+
 </body>
 </html>
