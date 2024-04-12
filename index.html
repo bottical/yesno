@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yes/No アプリ</title>
     <style>
-        button {
-          transition: background-color 1.0s, transform 0.0s;
-        }
+.button {
+  background: linear-gradient(to bottom, #FF7F50 0%, #FF6347 100%); /* グラデーションの色を設定 */
+  border: none; /* 枠線をなくす */
+  color: white; /* 文字色を白に */
+  padding: 10px 20px; /* 上下のパディングと左右のパディング */
+  font-size: 18px; /* 文字のサイズ */
+  font-weight: bold; /* 文字を太字に */
+  border-radius: 20px; /* 角を丸める */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 影をつける */
+  cursor: pointer; /* カーソルを指の形に */
+  transition: transform 0.2s, box-shadow 0.2s; /* アニメーションの追加 */
+}
 
-        button:active {
-          background-color: #4287f5;  /* クリック時に背景色を変更 */
-          transform: scale(0.8);     /* クリック時に少し縮小させる */
-        }
+.button:active {
+  transform: translateY(2px); /* クリック時にボタンを少し下に動かす */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* クリック時に影を少し小さくする */
+}
     </style>
     
 </head>
@@ -72,10 +81,10 @@ document.getElementById('reset-btn').addEventListener('click', () => {
 </script>
 
 <h2>Yes/No アプリ</h2>
-<button id="yes-btn">YES</button><button id="yes-btn">NO</button>
-<button id="tally-btn">集計</button>
+<button class="button" id="yes-btn">YES</button><button class="button" id="yes-btn">NO</button>
+<button class="button" id="tally-btn">集計</button>
 <div id="yes-count">YESの数: 0</div>
-<button id="reset-btn">リセット</button>
+<button class="button" id="reset-btn">リセット</button>
     
 </body>
 </html>
