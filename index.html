@@ -47,17 +47,15 @@ document.getElementById('tally-btn').addEventListener('click', () => {
 });
 
 document.getElementById('reset-btn').addEventListener('click', () => {
-  set(dbRef, 0); // 'yesCount'の値を0に設定
-    => {
-    document.getElementById('tally-btn').addEventListener('click', () => {
-  get(dbRef).then((snapshot) => {
-    const value = snapshot.val() || 0;
-    document.getElementById('yes-count').textContent = 'YESの数: ' + value;
+  set(dbRef, 0)  // 'yesCount'の値を0に設定
+    .then(() => {
+      document.getElementById('yes-count').textContent = 'YESの数: 0'; // すぐに表示を更新
+    })
+    .catch((error) => {
+      console.error('Error updating value:', error);
   });
 });
 
-});
-});
     
 </script>
 
